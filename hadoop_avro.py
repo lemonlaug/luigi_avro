@@ -38,6 +38,5 @@ class AvroTask(luigi.hadoop.JobTask):
         
         for output in outputs:
             writer.append(output[1])
-        #Needn't call close, cause the luigi job
-        #will do that.
+        #Needn't call close, cause the luigi job will do that.
         writer.flush()

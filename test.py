@@ -64,3 +64,7 @@ class TestAvroWrite(LuigiTestCase):
         self.assertEqual(len(data), 2)
         self.assertEqual(data[1]['integer'], 1)
         self.assertEqual(data[0]['string'], 'real')
+
+class TestAvroRead(LuigiTestCase):
+    #How to test this locally?
+    pass
