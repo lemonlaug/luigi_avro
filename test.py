@@ -43,7 +43,7 @@ class TestAvroWrite(LuigiTestCase):
                 line = json.loads(line)
                 yield None, line
 
-            def get_avro_schema(self):
+            def avro_schema(self):
                 schema = {'namespace': 'test',
                           'type': 'record',
                           'name': 'test_data',
