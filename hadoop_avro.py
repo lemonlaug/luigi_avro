@@ -6,6 +6,20 @@ from avro.io import DatumWriter
 import sys
 import json
 
+class AvroJobRunner(luigi.hadoop.HadoopJobRunner):
+    """A job runner that allows reading avro files.
+
+    Return an instance of this class from the job_runner method
+    in your task. Need to add avro-mapred-jar to the config file too.
+    """
+    def __init__(self):
+        config = luigi.configuration.get_config()
+        streaming_jar = config.get('hadoop', 'streaming-jar')
+        input_format = 'org.apache.avro.mapred.AvroAsTextInputFormat'
+        super(AvroJobRunner, self).__init__(streaming_jar=streaming_jar,
+                                            input_format=input_format,
+                                            libjars=[config.get('avro', 'avro-mapred-jar')])
+
 class AvroTask(luigi.hadoop.JobTask):
     """This is the function that defines some
     common functionalit for research input datasets.
